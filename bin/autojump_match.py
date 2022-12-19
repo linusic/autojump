@@ -75,6 +75,12 @@ def match_consecutive(needles, haystack, ignore_case=False):
             (path='/foo/baz', weight=10),
         ]
     """
+    sep = '\\\\' if os.sep == '\\' else os.sep
+    regex_no_sep = '[^' + sep + ']*'
+    regex_no_sep_end = regex_no_sep + '$'
+    regex_one_sep = regex_no_sep + sep + regex_no_sep
+
+    
     regex_no_sep = '[^' + os.sep + ']*'
     regex_no_sep_end = regex_no_sep + '$'
     regex_one_sep = regex_no_sep + os.sep + regex_no_sep
