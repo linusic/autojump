@@ -58,3 +58,35 @@ finally, use `j` or `autojump` command to jump into `folder_name` that you expec
 ```shell
 j <folder_name>
 ```
+
+# For Windows(PowerShell)
+Based on above config, just add below code into your PowerShell config file, eg: `Microsoft.PowerShell_profile.ps1`
+
+```powershell
+function auto_jump {
+    $autojump_script_path = (cd ~ && $pwd.path) + "\AppData\Local\autojump\bin\autojump"
+
+    $args = $args | Out-String
+    if (-not $args.StartsWith('-') )
+    {
+        $new_path=(python $autojump_script_path $args)
+        if (Test-Path $new_path)
+        {
+            cd $new_path
+        } 
+        else
+        {
+            echo autojump: directory $args not found
+            echo try `autojump --help` for more information
+        }
+    }
+    else{
+        python "$pwd\autojump" $args
+    }
+
+}
+Set-Alias j        auto_jump
+Set-Alias autojump auto_jump
+```
+
+then you can use `autojump` or `j` in PowerShell
