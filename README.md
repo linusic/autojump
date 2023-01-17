@@ -5,7 +5,7 @@ fix issue refer from (https://github.com/wting/autojump/issues/628#issuecomment-
 ## Install autojump
 clone or download `zip`
 ```shell
-git clone git://github.com/wting/autojump.git
+git clone https://github.com/linusic/autojump.git
 ```
 install autojump
 ```shell
