@@ -67,26 +67,23 @@ function auto_jump {
     $autojump_script_path = (cd ~ && $pwd.path) + "\AppData\Local\autojump\bin\autojump"
 
     $args = $args | Out-String
-    if (-not $args.StartsWith('-') )
-    {
+    if (-not $args.StartsWith('-') ) {
         $new_path=(python $autojump_script_path $args)
-        if (Test-Path $new_path)
-        {
+        if (Test-Path $new_path) {
             cd $new_path
-        } 
-        else
-        {
+        }
+        else {
             echo autojump: directory $args not found
             echo try `autojump --help` for more information
         }
     }
-    else{
-        python "$pwd\autojump" $args
-    }
+    else{ python "$pwd\autojump" $args }
 
 }
+
 Set-Alias j        auto_jump
-Set-Alias autojump auto_jump
+$raw_autojump_path = $HOME + "\AppData\Local\autojump\bin\autojump.bat"
+Set-Alias autojump $raw_autojump_path
 ```
 
 then you can use `autojump` or `j` in PowerShell
